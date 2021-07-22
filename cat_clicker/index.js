@@ -18,16 +18,34 @@ for (var i = cats.length - 1; i >= 0; i--) {
 	var img = document.createElement("img");
 	img.setAttribute("style", "width:100%;min-height:100px");
 	img.setAttribute("src", cats[i].src);
-	img.addEventListener('click', function(){
-  		incrementarContador();
-	}, true);	
+	var a = "contador_"+i;
+	var b = "contadorAux_"+i;	
+	img.setAttribute("onclick", "incrementarContador('"+a+"','"+b+"');");	
 	cont.appendChild(img);
+	var contador = document.createElement("h3");
+	contador.setAttribute("id", "contador_" + i);
+	contador.innerHTML = "0";
+	cont.appendChild(contador);
+	var contadorAux = document.createElement("input");
+	contadorAux.setAttribute("type", "hidden");
+	contadorAux.setAttribute("id", "contadorAux_"+i);
+	contadorAux.setAttribute("value", "0");	
+	cont.appendChild(contadorAux);
 	list_cats.appendChild(cont);
 }
-function incrementarContador(){
-	cont = parseInt(document.getElementById("contadorAux").value);
+function incrementarContador(contador, contadorAux){	
+	cont = parseInt(document.getElementById(contadorAux).value);
 	cont += 1;
-	document.getElementById("contador").innerHTML = "";
-	document.getElementById("contador").innerHTML = cont;
-	document.getElementById("contadorAux").value = cont;
+	document.getElementById(contador).innerHTML = "";
+	document.getElementById(contador).innerHTML = cont;
+	document.getElementById(contadorAux).value = cont;
 }
+
+
+
+
+
+
+
+
+

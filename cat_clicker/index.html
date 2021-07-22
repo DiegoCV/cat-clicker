@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Cat Clicker</title>    
-</head>
+<title>Cat Clicker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body>
-    <p style="font-size: 0.9rem;font-style: italic;">
-        <img style="display: block;" src="https://live.staticflickr.com/3903/15218475961_963a4c116e_b.jpg" id="image_cat" alt="Cat" style="height: 100px; width: 100px;" height="500px" width="500px">
-        "Cat" by strogoscope is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/
-    </p>
-    <h2>Cantidad de clicks <span id="contador">0</span></h2>
-
+    <div class="w3-container w3-teal">
+        <h1>Cat Clicker</h1>
+    </div>
+    <div class="w3-content">
+        <div class="w3-row w3-margin" id="list_cats">     
+        </div>
+        <div class="w3-row w3-margin">
+            <div class="w3-fith">   
+            <h2>Cantidad de clicks <span id="contador">0</span></h2>
+            <input type="hidden" id="contadorAux" value="0"/>           	
+            </div>         
+        </div>
+    </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
 

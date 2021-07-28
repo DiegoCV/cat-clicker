@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
     var model = {
         generalCount: 0,
         isAdmin: false,
@@ -180,4 +180,76 @@ $(function() {
     };
 
     octopus.init();
+});*/
+
+$(function() {
+
+    var initialCats = [
+        {
+            id: 0,
+            name: "Boss",
+            src: "https://live.staticflickr.com/3903/15218475961_963a4c116e_b.jpg",
+            clickCount: 0,
+            nickNames:["Alfred", "Simons", "Lea"]
+        }, {
+            id: 1,
+            name: "Puma",
+            src: "https://live.staticflickr.com/3436/3717404325_db41d8d687_b.jpg",
+            clickCount: 0,
+            nickNames:["Tigre"]
+        }, {
+            id: 2,
+            name: "Mirringo",
+            src: "https://live.staticflickr.com/2106/2207159142_8206ab6984.jpg",
+            clickCount: 0,
+            nickNames:["cat chow"]
+        }, {
+            id: 3,
+            name: "Tax",
+            src: "https://live.staticflickr.com/5479/9806556103_bb21b3f223_b.jpg",
+            clickCount: 0,
+            nickNames:["Impuesto"]
+        }, {
+            id: 4,
+            name: "Mancha",
+            src: "https://live.staticflickr.com/3894/14962688165_04759a8b03_b.jpg",
+            clickCount: 0,
+            nickNames:["easytoclean"]
+        }];
+
+    function Cat(data){
+        this.name = ko.observable(data.name);
+        this.imgSrc = ko.observable(data.src);
+        this.clickCount = ko.observable(data.clickCount);
+        this.level = ko.computed(function() {
+            var levels = ["pequenno", "mediano", "grande"];
+            if (this.clickCount() < 5)
+                return levels[0];
+            else if (this.clickCount() < 10)
+                return levels[1];
+            else
+                return levels[2];
+        }, this);
+        this.nickNames = ko.observableArray(data.nickNames);
+    }
+
+    function CatViewModel() {
+        var self = this;
+        self.listCats = new ko.observableArray([]);
+        initialCats.forEach(function(cat){
+            self.listCats.push(new Cat(cat));
+        });
+        self.currentCat = ko.observable(self.listCats()[0]);
+        self.incrementClickCounter = function() {
+            var previousCount = self.currentCat().clickCount();
+            self.currentCat().clickCount(previousCount + 1);
+        };
+        self.showCat = function(cat) {
+            self.currentCat(cat);
+        }
+    }
+
+    //ko.applyBindings(new CatViewModel());
+    ko.applyBindings(new CatViewModel());
+
 });
